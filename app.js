@@ -22,6 +22,7 @@ class Sprite {
       height: 50,
     };
     this.colour = colour;
+    this.isAttacking;
   }
 
   draw() {
@@ -29,13 +30,15 @@ class Sprite {
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
 
     //atack Box
-    c.fillStyle = "green";
-    c.fillRect(
-      this.attackbox.position.x,
-      this.attackbox.position.y,
-      this.attackbox.width,
-      this.attackbox.height
-    );
+    if (this.isAttacking) {
+      c.fillStyle = "green";
+      c.fillRect(
+        this.attackbox.position.x,
+        this.attackbox.position.y,
+        this.attackbox.width,
+        this.attackbox.height
+      );
+    }
   }
 
   update() {
@@ -49,6 +52,13 @@ class Sprite {
     } else {
       this.velocity.y += gravity;
     }
+  }
+
+  attack() {
+    this.isAttacking = true;
+    setTimeout(() => {
+      this.isAttacking = false;
+    }, 100);
   }
 }
 
@@ -118,9 +128,14 @@ function animate() {
 
   if (
     player.attackbox.position.x + player.attackbox.width >= enemy.position.x &&
-    player.attackbox.position.x <= enemy.position.x + enemy.width
+    player.attackbox.position.x <= enemy.position.x + enemy.width &&
+    player.attackbox.position.y + player.attackbox.height >= enemy.position.y &&
+    player.attackbox.position.y <= enemy.position.y + enemy.height &&
+    player.isAttacking
   ) {
-    //console.log("hit");
+    player.isAttacking = false;
+    enemy.isAttacking = false;
+    console.log("hit");
   }
 }
 
@@ -141,6 +156,9 @@ window.addEventListener("keydown", (event) => {
     case "w":
       player.velocity.y = -18;
       break;
+    case " ":
+      player.attack();
+      break;
 
     //Enemy
 
@@ -154,6 +172,9 @@ window.addEventListener("keydown", (event) => {
       break;
     case "ArrowUp":
       enemy.velocity.y = -18;
+      break;
+    case "DownArrow":
+      enemy.attack();
       break;
   }
 });
