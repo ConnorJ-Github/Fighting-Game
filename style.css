@@ -19,9 +19,28 @@
   padding: 20px;
 }
 
-#playerHealth {
-  background-color: blue;
+#pHealthLock {
+  position: relative;
   height: 50px;
+  width: 100%;
+
+  display: flex;
+
+  justify-content: flex-end;
+}
+
+#playerHealth {
+  background-color: grey;
+  height: 50px;
+  width: 100%;
+}
+
+#pHealthLock2 {
+  position: absolute;
+  background-color: blue;
+  top: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
 }
 
@@ -31,6 +50,12 @@
   height: 100px;
 
   flex-shrink: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2rem;
 }
 
 #eHealthLock {
@@ -51,4 +76,19 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+#outcome {
+  display: none;
+
+  position: absolute;
+  color: white;
+
+  justify-content: center;
+  align-items: center;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
