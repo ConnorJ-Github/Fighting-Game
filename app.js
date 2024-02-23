@@ -128,24 +128,30 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
   )
 }
 
-let timer = 10
+function determinewinner({ player, enemy, timerId }) {
+  clearTimeout(timerId)
+  document.getElementById("outcome").style.display = "flex"
+  if (player.health === enemy) {
+    document.getElementById("outcome").innerHTML = "Tie!"
+  } else if (player.health > enemy.health) {
+    document.getElementById("outcome").innerHTML = "Player Wins!"
+  } else {
+    document.getElementById("outcome").innerHTML = "Enemy Wins!"
+  }
+}
 
+let timer = 30
+
+let timerId
 function decreaseTimer() {
   if (timer > 0) {
-    setTimeout(decreaseTimer, 1000)
+    timerId = setTimeout(decreaseTimer, 1000)
     timer--
     document.getElementById("timer").innerHTML = timer
   }
 
   if (timer === 0) {
-    document.getElementById("outcome").style.display = "flex"
-    if (player.health === enemy) {
-      document.getElementById("outcome").innerHTML = "Tie!"
-    } else if (player.health > enemy.health) {
-      document.getElementById("outcome").innerHTML = "Player Wins!"
-    } else {
-      document.getElementById("outcome").innerHTML = "Enemy Wins!"
-    }
+    determinewinner({ player, enemey, timerId })
   }
 }
 
@@ -203,6 +209,12 @@ function animate() {
 
     player.health -= 10
     document.getElementById("pHealthLock2").style.width = player.health + "%"
+  }
+
+  //Check Health & end Game
+
+  if (enemy.health <= 0 || player.health <= 0) {
+    determinewinner({ player, enemy, timerId })
   }
 }
 
