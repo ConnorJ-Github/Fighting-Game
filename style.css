@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+.Interface {
+  position: relative;
+  display: inline-block;
+}
+
+.interfaceContainer {
+  position: absolute;
+
+  display: flex;
+
+  width: 100%;
+
+  align-items: center;
+
+  padding: 20px;
+}
+
+#playerHealth {
+  background-color: blue;
+  height: 50px;
+  width: 100%;
+}
+
+#timer {
+  background: orange;
+  width: 100px;
+  height: 100px;
+
+  flex-shrink: 0;
+}
+
+#enemyHealth {
+  background-color: red;
+  height: 50px;
+  width: 100%;
+}
