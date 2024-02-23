@@ -10,9 +10,10 @@ c.fillRect(0, 0, canvas.width, canvas.height);
 const gravity = 0.5;
 
 class Sprite {
-  constructor({ position, velocity }) {
+  constructor({ position, velocity, colour = "red" }) {
     this.position = position;
     this.velocity = velocity;
+    this.width = 50;
     this.height = 150;
     this.lastkey;
     this.attackbox = {
@@ -20,11 +21,12 @@ class Sprite {
       width: 100,
       height: 50,
     };
+    this.colour = colour;
   }
 
   draw() {
-    c.fillStyle = "red";
-    c.fillRect(this.position.x, this.position.y, 50, this.height);
+    c.fillStyle = this.colour;
+    c.fillRect(this.position.x, this.position.y, this.width, this.height);
 
     //atack Box
     c.fillStyle = "green";
@@ -59,6 +61,7 @@ const player = new Sprite({
     x: 0,
     y: 0,
   },
+  colour: "blue",
 });
 
 const enemy = new Sprite({
@@ -109,6 +112,15 @@ function animate() {
     enemy.velocity.x = -3;
   } else if (keys.ArrowRight.pressed && enemy.lastkey === "ArrowRight") {
     enemy.velocity.x = 3;
+  }
+
+  // collision
+
+  if (
+    player.attackbox.position.x + player.attackbox.width >= enemy.position.x &&
+    player.attackbox.position.x <= enemy.position.x + enemy.width
+  ) {
+    //console.log("hit");
   }
 }
 
