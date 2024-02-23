@@ -33,8 +33,22 @@
   flex-shrink: 0;
 }
 
-#enemyHealth {
-  background-color: red;
+#eHealthLock {
+  position: relative;
   height: 50px;
   width: 100%;
+}
+
+#enemyHealth {
+  background-color: grey;
+  height: 50px;
+}
+
+#eHealthLock2 {
+  position: absolute;
+  background-color: red;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

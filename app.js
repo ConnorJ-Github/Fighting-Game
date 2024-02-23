@@ -161,7 +161,9 @@ function animate() {
     player.isAttacking
   ) {
     player.isAttacking = false;
-    console.log(" player hit");
+    //console.log(" player hit");
+
+    document.getElementById("eHealthLock2").style.width = "20%";
   }
 
   if (
