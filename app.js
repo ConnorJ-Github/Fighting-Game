@@ -140,11 +140,11 @@ function decreaseTimer() {
   if (timer === 0) {
     document.getElementById("outcome").style.display = "flex"
     if (player.health === enemy) {
-      document.getElementById("outcome").innerHTML = "Tie"
+      document.getElementById("outcome").innerHTML = "Tie!"
     } else if (player.health > enemy.health) {
-      document.getElementById("outcome").innerHTML = "Player Wins"
+      document.getElementById("outcome").innerHTML = "Player Wins!"
     } else {
-      document.getElementById("outcome").innerHTML = "Enemy Wins"
+      document.getElementById("outcome").innerHTML = "Enemy Wins!"
     }
   }
 }
