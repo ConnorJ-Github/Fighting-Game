@@ -27,5 +27,5 @@ Functionality.
 - Gravity phyics, upon jumping players will return to the ground.
 - Attack, players can attack each other when in range.
 - Health, players health will reduce when hit by the other player.
-
+- Countdown timer, game will end upon timer end
 
